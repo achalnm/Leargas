@@ -92,8 +92,14 @@ def fetch_table(table_id: str) -> dict | None:
     try:
         r = httpx.get(url, timeout=30, follow_redirects=True, headers=HEADERS)
         if r.status_code == 200:
-            return r.json()
-        print(f"  SKIP {table_id}: HTTP {r.status_code}")
+            data = r.json()
+            if "id" in data and "value" in data:
+                n_values = len(data.get("value", []))
+                print(f"  OK {table_id}: {n_values} values, dims={data.get('id')}")
+                return data
+            print(f"  SKIP {table_id}: 200 but unexpected format, keys: {list(data.keys())[:6]}")
+        else:
+            print(f"  SKIP {table_id}: HTTP {r.status_code}")
     except Exception as e:
         print(f"  SKIP {table_id}: {e}")
     return None

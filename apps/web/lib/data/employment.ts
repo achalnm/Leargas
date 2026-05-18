@@ -23,6 +23,6 @@ export function computeEmploymentStats(data: EmploymentDataPoint[]): EmploymentS
     currentUnemploymentRate: latest.unemploymentRate,
     euAverageRate: latest.euAverageRate ?? 0,
     yoyChange: parseFloat(yoyChange.toFixed(1)),
-    totalEmployed: 2_000_000,
+    totalEmployed: 2_450_000,
   };
 }

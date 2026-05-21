@@ -25,10 +25,10 @@ jobs:
         run: npm ci
 
       - name: TypeScript typecheck
-        run: npm run typecheck
+        run: npm run typecheck --workspace=apps/web
 
       - name: ESLint
-        run: npm run lint
+        run: npm run lint --workspace=apps/web
 
       - name: Run unit tests
-        run: npm run test
+        run: npm run test --workspace=apps/web

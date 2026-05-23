@@ -105,6 +105,9 @@ export interface WeatherStats {
   avgAnnualSunshine: number;
 }
 
+// Exchange rate (used by preferences hook)
+export type ExchangeCurrency = 'EUR' | 'USD' | 'GBP';
+
 // API Responses
 
 export interface ApiResponse<T> {

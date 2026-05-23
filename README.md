@@ -1,32 +1,120 @@
 # Léargas
 
-Irish public data dashboard built with Next.js, Firebase and Python.
+**Irish public data, made beautiful.**
 
-## What it does
+[![CI](https://github.com/achalnm/leargas/actions/workflows/ci.yml/badge.svg)](https://github.com/achalnm/leargas/actions)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![Firebase](https://img.shields.io/badge/Firebase-Firestore-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Deployed-Vercel-black?logo=vercel)](https://vercel.com/)
 
-- Housing prices from CSO RPPI
-- Employment data from CSO Labour Force Survey
-- Weather from Met Eireann
-- Users can save filter presets to Firestore
+> **Live demo:** [leargas.vercel.app](https://leargas.vercel.app)
 
-## Stack
+---
 
-- Next.js 14 / TypeScript
-- Tailwind CSS v4
-- Firebase Auth + Firestore
-- Python data pipeline (httpx + firebase-admin)
-- Deployed on Vercel
+## What is Léargas?
 
-## Local setup
+Léargas (_Irish: insight, vision_) is a full-stack analytics dashboard that visualises real Irish public data: housing prices, employment trends, and climate patterns, sourced directly from the CSO, Met Éireann.
 
-```bash
-npm install
-cp .env.example apps/web/.env.local
-# fill in firebase keys
-npm run dev
+Built as a production-quality portfolio project, it demonstrates end-to-end engineering: a Next.js frontend with Firestore-backed data, a Python ETL pipeline that fetches and cleans government data weekly, Firebase Auth, CI/CD via GitHub Actions, and deployment on Vercel.
+
+---
+
+## Features
+
+| Feature                  | Detail                                                                                  |
+| ------------------------ | --------------------------------------------------------------------------------------- |
+| **Housing dashboard**    | CSO Residential Property Price Index: national and Dublin time series, county breakdown |
+| **Employment dashboard** | CSO Labour Force Survey: unemployment rate, sectoral breakdown, Ireland vs EU           |
+| **Weather dashboard**    | Met Éireann historical data: monthly temperature, rainfall, sunshine hours              |
+| **Saved dashboards**     | Logged-in users can save named filter configurations to Firestore                       |
+| **CSV export**           | Download any dataset as a clean CSV file                                                |
+| **Authentication**       | Firebase Auth: email/password and Google OAuth, protected routes via Next.js middleware |
+
+---
+
+## Tech stack
+
+```text
+Frontend              Backend / DB            Pipeline
+------------------    --------------------    ----------------------
+Next.js 16            Firebase Firestore       Python 3.11+
+TypeScript (strict)   Firebase Auth           httpx
+Tailwind CSS v4       Firebase Admin SDK      firebase-admin
+Framer Motion         Next.js API routes      python-dotenv
+Zustand
+React Hook Form + Zod
+Recharts
 ```
 
-## Python pipeline
+---
+
+## Architecture
+
+![Léargas architecture](docs/architecture.svg)
+
+The Python pipeline runs on a GitHub Actions schedule every Monday. It fetches data from CSO and Met Éireann, cleans it, and pushes it to Firestore. The Next.js app reads from Firestore via server-side API routes.
+
+---
+
+## Why I built this
+
+I'm completing an **MSc in Computing (Data Analytics)** and wanted a project that shows the full picture: not just the academic part (modelling, statistics, Python) but also production-grade engineering: type-safe TypeScript, CI/CD, real-time databases, OAuth, and a deployed product that non-technical people can use.
+
+Ireland has excellent open data APIs (CSO, Met Éireann, data.gov.ie) but very few polished tools for exploring that data. Léargas fills that gap.
+
+---
+
+## Technical decisions
+
+**Why Firestore over PostgreSQL?**
+For a read-heavy, low-write dashboard fed by a batch ETL pipeline, Firestore's zero-ops setup is a better fit than provisioning a relational database. The data shape (flat JSON per data point) maps naturally to Firestore documents.
+
+**Why Next.js App Router?**
+The App Router's server components let us fetch Firestore data server-side on initial load, then hydrate interactivity client-side. It also makes adding API routes and middleware (auth protection) a single-framework concern.
+
+**Why Recharts over D3.js?**
+Recharts is the pragmatic choice for standard chart types: it's composable, typed, and integrates cleanly with React state. D3 would be the right call for custom geographic or force-directed visualisations, which are on the roadmap.
+
+---
+
+## Local development
+
+### Prerequisites
+
+- Node.js 20+
+- Python 3.11+ (for data pipeline only)
+- A Firebase project ([create one here](https://console.firebase.google.com))
+
+### 1. Clone and install
+
+```bash
+git clone https://github.com/achalnm/leargas.git
+cd leargas
+npm install
+```
+
+### 2. Configure environment
+
+```bash
+cp .env.example apps/web/.env.local
+# Open apps/web/.env.local and fill in your Firebase config keys
+```
+
+Get your Firebase config from:
+`Firebase Console -> Project Settings -> General -> Your apps -> Web app -> Config`
+
+### 3. Run the dev server
+
+```bash
+npm run dev
+# -> http://localhost:3000
+```
+
+### 4. (Optional) Run the data pipeline
+
+See [`packages/data-pipeline/README.md`](packages/data-pipeline/README.md) for full instructions.
 
 ```bash
 cd packages/data-pipeline
@@ -34,4 +122,88 @@ pip install -r requirements.txt
 python run_pipeline.py
 ```
 
-See packages/data-pipeline/README.md for more.
+---
+
+## Deploying to Vercel
+
+1. Push this repo to GitHub
+2. Go to [vercel.com](https://vercel.com) -> New Project -> import your repo
+3. Vercel auto-detects Next.js. Override build settings if needed:
+   - Build command: `npm run build --workspace=apps/web`
+   - Output directory: `apps/web/.next`
+4. Add all environment variables from `.env.example` in the Vercel dashboard
+5. Deploy. Every push to `main` deploys automatically.
+
+---
+
+## Firebase setup
+
+1. Create a project at [console.firebase.google.com](https://console.firebase.google.com)
+2. Enable **Authentication** -> Sign-in methods -> Email/Password + Google
+3. Enable **Firestore Database** -> Start in production mode
+4. Add the following Firestore security rules:
+
+```js
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /housingTimeSeries/{doc} { allow read; }
+    match /employmentTimeSeries/{doc} { allow read; }
+    match /weatherMonthly/{doc} { allow read; }
+
+    match /savedDashboards/{doc} {
+      allow read, write: if request.auth != null
+        && request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null;
+    }
+  }
+}
+```
+
+1. For GitHub Actions, add your Firebase service account as a repo secret named `FIREBASE_SERVICE_ACCOUNT_JSON`.
+
+---
+
+## Project structure
+
+```text
+leargas/
+├── .github/workflows/ci.yml          # CI: typecheck, lint, test
+├── .github/workflows/data-pipeline.yml  # Weekly data refresh (Mondays)
+├── docs/architecture.svg             # System architecture diagram
+├── apps/web/                         # Next.js application
+│   ├── app/
+│   │   ├── (auth)/                   # Login, register, forgot-password pages
+│   │   ├── dashboard/                # Dashboard pages and layout
+│   │   └── api/data/                 # API routes (Firestore to client)
+│   ├── components/
+│   │   ├── auth/                     # LoginForm, RegisterForm
+│   │   ├── dashboard/                # Sidebar, charts, dashboard views
+│   │   └── landing/                  # Hero, Features, CTA sections
+│   ├── lib/
+│   │   ├── firebase/                 # Client and Admin SDK init, auth helpers
+│   │   └── data/                     # Fetch and transform functions per module
+│   ├── hooks/                        # useAuth, useFirestore, useDashboard
+│   ├── store/                        # Zustand dashboard store
+│   └── types/                        # Shared TypeScript interfaces
+└── packages/data-pipeline/           # Python ETL pipeline
+    ├── scrapers/                      # CSO and Met Eireann API fetchers
+    ├── processors/                    # Data cleaning and transformation
+    └── ingest/                        # Firestore push script
+```
+
+---
+
+## Roadmap
+
+- [ ] County-level map visualisation (D3.js choropleth)
+- [ ] Dublin Bus route data overlay
+- [ ] Planning permission application trends
+- [ ] Email alerts for significant data changes
+- [ ] Public API for Léargas data
+
+---
+
+## Licence
+
+Data sourced from CSO Ireland, Met Éireann, and data.gov.ie under open government licence.

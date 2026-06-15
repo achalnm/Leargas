@@ -51,7 +51,9 @@ export default function RootLayout({ children }: { readonly children: React.Reac
       className={`${fraunces.variable} ${sourceSerif.variable} ${ibmPlexMono.variable} h-full`}
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col antialiased">{children}</body>
+      <body className="flex min-h-full flex-col antialiased" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

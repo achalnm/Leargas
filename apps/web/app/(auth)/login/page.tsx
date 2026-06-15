@@ -1,20 +1,30 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { LoginForm } from '@/components/auth/LoginForm';
 
 export const metadata: Metadata = {
-  title: 'Sign in',
+  title: 'Sign in · Léargas',
 };
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-12">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-display font-700 tracking-tight mb-2">Welcome back</h1>
-          <p className="text-sm text-[var(--color-foreground-muted)]">Sign in to access your saved dashboards</p>
-        </div>
-        <LoginForm />
-      </div>
+    <div>
+      <p className="mb-3 font-mono text-[9px] tracking-[0.2em] text-[var(--color-ink-soft)]">
+        SIGN IN · ACCESS YOUR SHEETS
+      </p>
+      <h1
+        className="font-display mb-6 text-3xl font-semibold tracking-tight text-[var(--color-ink)]"
+        style={{ fontVariationSettings: '"opsz" 36' }}
+      >
+        Welcome back
+      </h1>
+      <LoginForm />
+      <p className="mt-5 text-center font-mono text-[10px] text-[var(--color-ink-soft)]">
+        No account?{' '}
+        <Link href="/register" className="text-[var(--color-atlantic)] hover:underline">
+          Register free
+        </Link>
+      </p>
     </div>
   );
 }

@@ -4,96 +4,87 @@ import { motion } from 'framer-motion';
 
 const SOURCES = [
   {
+    ref: 'SOURCE 01',
     name: 'CSO Ireland',
     url: 'data.cso.ie',
-    description: 'Central Statistics Office: housing prices, employment, population, and more.',
+    desc: 'Central Statistics Office: housing prices, employment, population, and more.',
     datasets: ['Residential Property Price Index', 'Labour Force Survey', 'Population & Migration'],
-    badge: 'Government',
   },
   {
+    ref: 'SOURCE 02',
     name: 'Met Éireann',
     url: 'data.met.ie',
-    description: "Ireland's National Meteorological Service: historical climate data since 1942.",
+    desc: "Ireland's National Meteorological Service: historical climate data since 1942.",
     datasets: ['Monthly Temperature Records', 'Rainfall Measurements', 'Sunshine Duration'],
-    badge: 'Government',
   },
   {
+    ref: 'SOURCE 03',
     name: 'data.gov.ie',
     url: 'data.gov.ie',
-    description: "Ireland's Open Data Portal: transport, infrastructure, and public services.",
+    desc: "Ireland's Open Data Portal: transport, infrastructure, and public services.",
     datasets: ['Dublin Bus Routes', 'Planning Applications', 'Public Spending'],
-    badge: 'Open Data',
   },
 ];
 
 export function DataSourcesSection() {
   return (
-    <section id="data" className="bg-[var(--color-surface)] px-6 py-24">
+    <section id="sources" className="bg-[var(--color-ground-shade)] px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-16 text-center">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mb-3 text-xs font-semibold tracking-widest text-[var(--color-accent)] uppercase"
-          >
-            Transparent by design
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="font-display font-700 mb-4 text-4xl tracking-tight"
+        <div className="mb-14">
+          <p className="mb-2 font-mono text-[10px] tracking-[0.2em] text-[var(--color-ink-soft)]">
+            PROVENANCE
+          </p>
+          <h2
+            className="font-display text-4xl font-semibold tracking-tight text-[var(--color-ink)]"
+            style={{ fontVariationSettings: '"opsz" 36' }}
           >
             Real data. Real sources.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="mx-auto max-w-xl text-[var(--color-foreground-muted)]"
-          >
+          </h2>
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-[var(--color-ink-soft)]">
             Every number on Léargas is sourced directly from Irish government open data APIs. No
-            estimates. No scraping private sites. Always cited.
-          </motion.p>
+            estimates. No scraping. Always cited.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-          {SOURCES.map((source, i) => (
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          {SOURCES.map((src, i) => (
             <motion.div
-              key={source.name}
-              initial={{ opacity: 0, y: 24 }}
+              key={src.ref}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="surface-raised p-6"
+              className="survey-frame bg-[var(--color-ground)] p-5"
             >
-              <div className="mb-4 flex items-start justify-between">
-                <div>
-                  <h3 className="font-display font-600 mb-0.5 text-[var(--color-foreground)]">
-                    {source.name}
-                  </h3>
-                  <code className="font-mono text-xs text-[var(--color-foreground-subtle)]">
-                    {source.url}
-                  </code>
-                </div>
-                <span className="rounded-md border border-[var(--color-accent-muted)] bg-[var(--color-accent-subtle)] px-2 py-1 text-[10px] font-semibold tracking-wide text-[var(--color-accent)] uppercase">
-                  {source.badge}
+              <p className="mb-4 font-mono text-[9px] tracking-widest text-[var(--color-ink-soft)]">
+                {src.ref}
+              </p>
+
+              <div className="mb-1 flex items-start justify-between gap-2">
+                <h3
+                  className="font-display text-lg font-semibold text-[var(--color-ink)]"
+                  style={{ fontVariationSettings: '"opsz" 28' }}
+                >
+                  {src.name}
+                </h3>
+                <span className="border border-[var(--color-atlantic)] px-1.5 py-0.5 font-mono text-[9px] tracking-wider text-[var(--color-atlantic)]">
+                  GOV
                 </span>
               </div>
-              <p className="mb-4 text-sm leading-relaxed text-[var(--color-foreground-muted)]">
-                {source.description}
+
+              <p className="mb-1 font-mono text-[10px] text-[var(--color-graticule)]">{src.url}</p>
+              <p className="mb-4 text-sm leading-relaxed text-[var(--color-ink-soft)]">
+                {src.desc}
               </p>
-              <ul className="space-y-1.5">
-                {source.datasets.map((dataset) => (
+
+              <ul className="space-y-1.5 border-t border-[var(--color-graticule)] pt-3">
+                {src.datasets.map((d) => (
                   <li
-                    key={dataset}
-                    className="flex items-center gap-2 text-xs text-[var(--color-foreground-subtle)]"
+                    key={d}
+                    className="flex items-center gap-2 font-mono text-[10px] text-[var(--color-ink-soft)]"
                   >
-                    <span className="h-1 w-1 flex-shrink-0 rounded-full bg-[var(--color-accent)]" />
-                    {dataset}
+                    <span className="text-[var(--color-atlantic)]">+</span>
+                    {d}
                   </li>
                 ))}
               </ul>

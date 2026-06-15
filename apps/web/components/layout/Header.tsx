@@ -1,37 +1,32 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { BarChart3 } from 'lucide-react';
 
 export function Header() {
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="fixed top-0 left-0 right-0 z-50 glass border-b border-[var(--color-border)]"
-    >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center group-hover:scale-105 transition-transform">
-            <BarChart3 className="w-4.5 h-4.5 text-white" strokeWidth={2.5} />
-          </div>
-          <span className="font-display font-700 text-lg tracking-tight text-[var(--color-foreground)]">
+    <header className="fixed top-0 right-0 left-0 z-50 h-14 border-b border-[var(--color-graticule)] bg-[var(--color-ground)]">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
+        <Link href="/" className="flex items-center gap-3">
+          <span
+            className="font-display text-xl font-semibold tracking-tight text-[var(--color-ink)]"
+            style={{ fontVariationSettings: '"opsz" 36' }}
+          >
             Léargas
+          </span>
+          <span className="hidden font-mono text-[10px] tracking-widest text-[var(--color-ink-soft)] sm:inline">
+            IRISH DATA SURVEY
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
-          {([
-            { href: '#features', label: 'Features' },
-            { href: '#data', label: 'Data Sources' },
-            { href: '#about', label: 'About' },
-          ] as const).map((item) => (
+        <nav className="hidden items-center gap-8 md:flex">
+          {[
+            { href: '#sheets', label: 'Sheets' },
+            { href: '#sources', label: 'Sources' },
+          ].map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-[var(--color-foreground-muted)] hover:text-[var(--color-foreground)] transition-colors"
+              className="font-mono text-xs tracking-wider text-[var(--color-ink-soft)] transition-colors hover:text-[var(--color-ink)]"
             >
               {item.label}
             </Link>
@@ -41,18 +36,19 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/login"
-            className="text-sm text-[var(--color-foreground-muted)] hover:text-[var(--color-foreground)] transition-colors px-4 py-2"
+            className="font-mono text-xs tracking-wider text-[var(--color-ink-soft)] transition-colors hover:text-[var(--color-ink)]"
           >
             Sign in
           </Link>
           <Link
             href="/register"
-            className="text-sm font-medium px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
+            className="border border-[var(--color-atlantic)] px-4 py-1.5 font-mono text-xs tracking-wider text-[var(--color-atlantic)] transition-colors hover:bg-[var(--color-atlantic)] hover:text-[var(--color-ground)]"
+            style={{ borderRadius: '2px' }}
           >
-            Get started
+            Survey the data
           </Link>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }

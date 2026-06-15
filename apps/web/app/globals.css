@@ -1,45 +1,59 @@
 @import 'tailwindcss';
 
 @theme {
-  /* ─── Fonts ─────────────────────────────────────────────────────── */
-  --font-sans: var(--font-jakarta), system-ui, sans-serif;
-  --font-display: var(--font-sora), system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* Fonts */
+  --font-sans: var(--font-source-serif), Georgia, serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-mono: var(--font-ibm-plex-mono), 'Courier New', monospace;
 
-  /* ─── Brand Colours ─────────────────────────────────────────────── */
-  --color-background: #0a0f1e;
-  --color-surface: #111827;
-  --color-surface-raised: #1a2235;
-  --color-border: #1e2d47;
-  --color-border-subtle: #1a2540;
+  /* Survey almanac palette */
+  --color-ground: #ece7da;
+  --color-ground-shade: #e0d9c7;
+  --color-ink: #1c2a2e;
+  --color-ink-soft: #46554e;
+  --color-graticule: #bbb29c;
+  --color-madder: #9e3b2e;
+  --color-atlantic: #2e6b6e;
+  --color-peat: #6b4e2e;
 
-  --color-foreground: #f1f5f9;
-  --color-foreground-muted: #94a3b8;
-  --color-foreground-subtle: #475569;
+  /* Semantic aliases — keeps existing component refs working */
+  --color-background: #ece7da;
+  --color-surface: #e0d9c7;
+  --color-surface-raised: #d8d1bc;
+  --color-border: #bbb29c;
+  --color-border-subtle: #cec8b8;
 
-  /* Emerald — Ireland */
-  --color-accent: #10b981;
-  --color-accent-hover: #059669;
-  --color-accent-muted: #064e3b;
-  --color-accent-subtle: #022c22;
+  --color-foreground: #1c2a2e;
+  --color-foreground-muted: #46554e;
+  --color-foreground-subtle: #6b7a72;
 
-  /* Electric blue — secondary */
-  --color-secondary: #3b82f6;
-  --color-secondary-hover: #2563eb;
-  --color-secondary-muted: #1e3a8a;
+  --color-accent: #2e6b6e;
+  --color-accent-hover: #235456;
+  --color-accent-muted: #bbd4d5;
+  --color-accent-subtle: #dff0f0;
 
-  /* Chart palette */
-  --color-chart-1: #10b981;
-  --color-chart-2: #3b82f6;
-  --color-chart-3: #f59e0b;
-  --color-chart-4: #8b5cf6;
-  --color-chart-5: #ef4444;
-  --color-chart-6: #06b6d4;
+  --color-secondary: #9e3b2e;
+  --color-secondary-hover: #7d2e23;
+  --color-secondary-muted: #e8c8c5;
+
+  /* Chart series */
+  --color-chart-1: #2e6b6e;
+  --color-chart-2: #6b4e2e;
+  --color-chart-3: #9e3b2e;
+  --color-chart-4: #4a7080;
+  --color-chart-5: #8a7040;
+  --color-chart-6: #5a6b63;
 
   /* Status */
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
+  --color-success: #2e6b6e;
+  --color-warning: #8a7040;
+  --color-error: #9e3b2e;
+
+  /* Choropleth steps (housing/weather map fills) */
+  --color-choro-1: #c5ded9;
+  --color-choro-2: #8bbcb8;
+  --color-choro-3: #52958f;
+  --color-choro-4: #2e6b6e;
 }
 
 @layer base {
@@ -61,79 +75,158 @@
     min-height: 100%;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 1px solid var(--color-atlantic);
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: 2px;
   }
 
   ::selection {
     background-color: var(--color-accent-muted);
-    color: var(--color-foreground);
+    color: var(--color-ink);
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--color-surface);
+    background: var(--color-ground-shade);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--color-border);
-    border-radius: 3px;
+    background: var(--color-graticule);
+    border-radius: 0;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-foreground-subtle);
+    background: var(--color-ink-soft);
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Survey panel — keylined border with 2px corner ticks via CSS gradients */
+  .survey-frame {
+    position: relative;
+    border: 1px solid var(--color-graticule);
+    border-radius: 2px;
+    background-image:
+      linear-gradient(var(--color-ink), var(--color-ink)),
+      linear-gradient(var(--color-ink), var(--color-ink)),
+      linear-gradient(var(--color-ink), var(--color-ink)),
+      linear-gradient(var(--color-ink), var(--color-ink)),
+      linear-gradient(var(--color-ink), var(--color-ink)),
+      linear-gradient(var(--color-ink), var(--color-ink)),
+      linear-gradient(var(--color-ink), var(--color-ink)),
+      linear-gradient(var(--color-ink), var(--color-ink));
+    background-size:
+      8px 1px,
+      1px 8px,
+      8px 1px,
+      1px 8px,
+      8px 1px,
+      1px 8px,
+      8px 1px,
+      1px 8px;
+    background-position:
+      0 0,
+      0 0,
+      100% 0,
+      100% 0,
+      0 100%,
+      0 100%,
+      100% 100%,
+      100% 100%;
+    background-repeat: no-repeat;
   }
 
-  .glass {
-    background: rgba(17, 24, 39, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--color-border);
-  }
-
+  /* Legacy surface aliases — remapped to survey register */
   .surface {
     background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border: 1px solid var(--color-graticule);
+    border-radius: 2px;
   }
 
   .surface-raised {
     background-color: var(--color-surface-raised);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border: 1px solid var(--color-graticule);
+    border-radius: 2px;
   }
 
-  .glow-accent {
-    box-shadow: 0 0 24px rgba(16, 185, 129, 0.15);
+  /* Sheet eyebrow — IBM Plex Mono label above panels */
+  .sheet-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+
+  /* Ruled tooltip */
+  .reading-card {
+    background-color: var(--color-ground);
+    border: 1px solid var(--color-graticule);
+    border-radius: 2px;
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-ink);
+    box-shadow: 2px 2px 0 var(--color-graticule);
+  }
+
+  /* Pen-plotter reveal */
+  @keyframes draw-in {
+    from {
+      stroke-dashoffset: var(--path-length, 1000);
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .draw-in {
+    stroke-dasharray: var(--path-length, 1000);
+    stroke-dashoffset: var(--path-length, 1000);
+    animation: draw-in 1.2s ease-out forwards;
   }
 
   @keyframes enter {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .animate-enter {
-    animation: enter 0.4s ease-out;
+    animation: enter 0.35s ease-out;
+  }
+
+  /* Legacy — no-ops kept so old className refs don't error */
+  .glass {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-graticule);
+  }
+
+  .glow-accent {
+  }
+  .text-gradient {
+    color: var(--color-atlantic);
   }
 }

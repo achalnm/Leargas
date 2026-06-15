@@ -1,18 +1,26 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, Sora } from 'next/font/google';
+import { Fraunces, Source_Serif_4, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: '--font-jakarta',
+const fraunces = Fraunces({
+  variable: '--font-fraunces',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
   display: 'swap',
+  axes: ['opsz', 'SOFT', 'WONK'],
+  style: ['normal', 'italic'],
 });
 
-const sora = Sora({
-  variable: '--font-sora',
+const sourceSerif = Source_Serif_4({
+  variable: '--font-source-serif',
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
+  display: 'swap',
+  style: ['normal', 'italic'],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: '--font-ibm-plex-mono',
+  subsets: ['latin'],
+  weight: ['400', '500'],
   display: 'swap',
 });
 
@@ -22,7 +30,7 @@ export const metadata: Metadata = {
     template: '%s | Léargas',
   },
   description:
-    'Analytics dashboard visualising Irish public data: housing prices, employment trends, and climate patterns from CSO, data.gov.ie, and Met Éireann.',
+    'Analytics dashboard visualising Irish public data: housing prices, employment trends, and climate patterns from CSO and Met Éireann.',
   keywords: ['Ireland', 'data analytics', 'housing prices', 'CSO', 'Met Éireann', 'dashboard'],
   authors: [{ name: 'Léargas' }],
   openGraph: {
@@ -40,7 +48,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
   return (
     <html
       lang="en"
-      className={`${jakarta.variable} ${sora.variable} h-full`}
+      className={`${fraunces.variable} ${sourceSerif.variable} ${ibmPlexMono.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col antialiased">{children}</body>

@@ -2,48 +2,47 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 
 export function CtaSection() {
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-3xl mx-auto text-center">
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-3xl">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="surface p-12 relative overflow-hidden"
+          className="survey-frame bg-[var(--color-ground)] p-12 text-center"
         >
-          {/* Decorative glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent-subtle)] via-transparent to-[var(--color-secondary-muted)] opacity-40 pointer-events-none" />
+          <p className="mb-4 font-mono text-[10px] tracking-[0.2em] text-[var(--color-ink-soft)]">
+            FREE TO USE · NO CREDIT CARD REQUIRED
+          </p>
+          <h2
+            className="font-display mb-4 text-4xl font-semibold tracking-tight text-[var(--color-ink)]"
+            style={{ fontVariationSettings: '"opsz" 36' }}
+          >
+            Start surveying Irish data
+          </h2>
+          <p className="mx-auto mb-10 max-w-md text-sm leading-relaxed text-[var(--color-ink-soft)]">
+            Create a free account to save your dashboard configurations and access the full suite of
+            analytics tools.
+          </p>
 
-          <div className="relative">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-4">
-              Free to use
-            </p>
-            <h2 className="text-4xl font-display font-700 tracking-tight mb-4">
-              Start exploring Irish data
-            </h2>
-            <p className="text-[var(--color-foreground-muted)] mb-8 max-w-lg mx-auto leading-relaxed">
-              Create a free account to save your dashboard configurations and access the full suite
-              of analytics tools. No credit card required.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
-                href="/register"
-                className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-all hover:scale-[1.02] active:scale-[0.98] glow-accent w-full sm:w-auto justify-center"
-              >
-                Create free account
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/dashboard"
-                className="flex items-center gap-2 px-7 py-3.5 rounded-xl border border-[var(--color-border)] text-[var(--color-foreground-muted)] font-medium text-sm hover:border-[var(--color-foreground-subtle)] hover:text-[var(--color-foreground)] transition-all w-full sm:w-auto justify-center"
-              >
-                Browse as guest
-              </Link>
-            </div>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/register"
+              className="inline-flex w-full items-center justify-center border border-[var(--color-atlantic)] bg-[var(--color-atlantic)] px-7 py-3.5 font-mono text-sm tracking-wider text-[var(--color-ground)] transition-all hover:bg-[var(--color-accent-hover)] sm:w-auto"
+              style={{ borderRadius: '2px' }}
+            >
+              Create free account
+            </Link>
+            <Link
+              href="/dashboard"
+              className="inline-flex w-full items-center justify-center border border-[var(--color-graticule)] px-7 py-3.5 font-mono text-sm tracking-wider text-[var(--color-ink-soft)] transition-colors hover:border-[var(--color-ink)] hover:text-[var(--color-ink)] sm:w-auto"
+              style={{ borderRadius: '2px' }}
+            >
+              Browse as guest
+            </Link>
           </div>
         </motion.div>
       </div>

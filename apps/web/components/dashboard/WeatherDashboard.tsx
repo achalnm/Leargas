@@ -125,7 +125,8 @@ export function WeatherDashboard() {
             onClick={() =>
               downloadCsv(data as unknown as Record<string, unknown>[], 'leargas-weather')
             }
-            className="flex flex-shrink-0 items-center gap-2 rounded-lg border border-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-foreground-muted)] transition-colors hover:bg-[var(--color-surface-raised)] hover:text-[var(--color-foreground)]"
+            className="flex flex-shrink-0 items-center gap-2 border border-[var(--color-graticule)] px-4 py-2 font-mono text-[10px] tracking-wider text-[var(--color-ink-soft)] transition-colors hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]"
+            style={{ borderRadius: '2px' }}
           >
             <Download className="h-4 w-4" />
             <span className="hidden sm:inline">Export CSV</span>
@@ -134,20 +135,23 @@ export function WeatherDashboard() {
       </div>
 
       {/* Chart type toggle */}
-      <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-4">
-        <span className="text-xs font-semibold tracking-wider text-[var(--color-foreground-subtle)] uppercase">
-          Temperature chart
+      <div className="survey-frame flex flex-wrap items-center gap-3 bg-[var(--color-surface)] p-4">
+        <span className="font-mono text-[10px] tracking-[0.15em] text-[var(--color-ink-soft)]">
+          TEMPERATURE CHART
         </span>
-        <div className="flex overflow-hidden rounded-lg border border-[var(--color-border)]">
+        <div
+          className="flex overflow-hidden border border-[var(--color-graticule)]"
+          style={{ borderRadius: '2px' }}
+        >
           {CHART_TYPES.map(({ value, label }) => (
             <button
               key={value}
               onClick={() => setFilter({ chartType: value })}
               className={cn(
-                'px-3 py-1.5 text-xs font-medium transition-colors',
+                'px-3 py-1.5 font-mono text-[10px] tracking-wide transition-colors',
                 chartType === value
-                  ? 'bg-[var(--color-accent)] text-white'
-                  : 'text-[var(--color-foreground-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-foreground)]'
+                  ? 'bg-[var(--color-atlantic)] text-[var(--color-ground)]'
+                  : 'text-[var(--color-ink-soft)] hover:bg-[var(--color-ground-shade)] hover:text-[var(--color-ink)]'
               )}
             >
               {label}
@@ -158,7 +162,7 @@ export function WeatherDashboard() {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {summaryStats.map((s) => (
-          <div key={s.label} className="surface p-4">
+          <div key={s.label} className="surface card-lift p-4">
             <p className="mb-1 text-xs text-[var(--color-foreground-muted)]">{s.label}</p>
             <p className="font-display font-700 text-xl text-[var(--color-foreground)]">
               {s.value}
@@ -172,7 +176,7 @@ export function WeatherDashboard() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="surface p-6"
+        className="surface card-lift p-6"
       >
         <h3 className="mb-6 text-sm font-semibold text-[var(--color-foreground)]">
           Average monthly temperature (°C)
@@ -238,7 +242,7 @@ export function WeatherDashboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="surface p-6"
+          className="surface card-lift p-6"
         >
           <h3 className="mb-6 text-sm font-semibold text-[var(--color-foreground)]">
             Rainfall (mm)
@@ -275,7 +279,7 @@ export function WeatherDashboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.25 }}
-          className="surface p-6"
+          className="surface card-lift p-6"
         >
           <h3 className="mb-6 text-sm font-semibold text-[var(--color-foreground)]">
             Sunshine hours

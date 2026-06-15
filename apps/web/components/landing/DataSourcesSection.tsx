@@ -54,7 +54,7 @@ export function DataSourcesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="survey-frame bg-[var(--color-ground)] p-5"
+              className="survey-frame card-lift bg-[var(--color-ground)] p-5"
             >
               <p className="mb-4 font-mono text-[9px] tracking-widest text-[var(--color-ink-soft)]">
                 {src.ref}

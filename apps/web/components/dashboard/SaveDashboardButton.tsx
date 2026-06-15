@@ -29,41 +29,53 @@ export function SaveDashboardButton({ module }: Props) {
     setSaving(false);
     setSaved(true);
     setName('');
-    setTimeout(() => { setSaved(false); setOpen(false); }, 1200);
+    setTimeout(() => {
+      setSaved(false);
+      setOpen(false);
+    }, 1200);
   }
 
   return (
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--color-border)] text-sm text-[var(--color-foreground-muted)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent-muted)] hover:bg-[var(--color-accent-subtle)] transition-colors flex-shrink-0"
+        className="flex flex-shrink-0 items-center gap-2 border border-[var(--color-graticule)] px-4 py-2 font-mono text-[10px] tracking-wider text-[var(--color-ink-soft)] transition-colors hover:border-[var(--color-atlantic)] hover:text-[var(--color-atlantic)]"
+        style={{ borderRadius: '2px' }}
       >
-        <Bookmark className="w-4 h-4" />
+        <Bookmark className="h-4 w-4" />
         Save view
       </button>
 
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setOpen(false)} />
-          <div className="relative surface w-full max-w-sm p-6 shadow-2xl">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-display font-700 text-base text-[var(--color-foreground)]">Save this view</h3>
-              <button onClick={() => setOpen(false)} className="w-7 h-7 flex items-center justify-center rounded-lg text-[var(--color-foreground-subtle)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-surface-raised)] transition-colors">
-                <X className="w-3.5 h-3.5" />
+          <div
+            className="absolute inset-0 bg-[var(--color-ink)]/40"
+            onClick={() => setOpen(false)}
+          />
+          <div className="survey-frame relative w-full max-w-sm bg-[var(--color-ground)] p-6">
+            <div className="mb-5 flex items-center justify-between">
+              <p className="font-mono text-[9px] tracking-widest text-[var(--color-ink-soft)]">
+                SAVE VIEW
+              </p>
+              <button
+                onClick={() => setOpen(false)}
+                className="flex h-6 w-6 items-center justify-center border border-[var(--color-graticule)] text-[var(--color-ink-soft)] transition-colors hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]"
+                style={{ borderRadius: '2px' }}
+              >
+                <X className="h-3 w-3" />
               </button>
             </div>
 
             {saved ? (
-              <div className="text-center py-4">
-                <div className="w-10 h-10 rounded-full bg-[var(--color-accent-subtle)] flex items-center justify-center mx-auto mb-2">
-                  <Bookmark className="w-5 h-5 text-[var(--color-accent)]" />
-                </div>
-                <p className="text-sm text-[var(--color-foreground)]">Saved!</p>
+              <div className="space-y-3 py-4 text-center">
+                <p className="font-mono text-[10px] tracking-wider text-[var(--color-atlantic)]">
+                  ✓ &nbsp; SAVED
+                </p>
               </div>
             ) : (
               <>
-                <p className="text-xs text-[var(--color-foreground-muted)] mb-4">
-                  Give this view a name to find it later in Saved Dashboards.
+                <p className="mb-4 font-sans text-xs text-[var(--color-ink-soft)]">
+                  Name this view to find it later in Saved Dashboards.
                 </p>
                 <input
                   autoFocus
@@ -72,15 +84,17 @@ export function SaveDashboardButton({ module }: Props) {
                   onChange={(e) => setName(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSave()}
                   placeholder="e.g. Dublin Housing 2020–2024"
-                  className="w-full px-4 py-2.5 rounded-lg bg-[var(--color-surface-raised)] border border-[var(--color-border)] text-sm text-[var(--color-foreground)] placeholder:text-[var(--color-foreground-subtle)] focus:outline-none focus:border-[var(--color-accent)] transition-colors mb-4"
+                  className="mb-4 w-full border border-[var(--color-graticule)] bg-[var(--color-surface)] px-3 py-2.5 font-sans text-sm text-[var(--color-ink)] transition-colors placeholder:text-[var(--color-graticule)] focus:border-[var(--color-atlantic)] focus:outline-none"
+                  style={{ borderRadius: '2px' }}
                 />
                 <button
                   onClick={handleSave}
                   disabled={!name.trim() || saving}
-                  className="w-full py-2.5 rounded-xl bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="flex w-full items-center justify-center gap-2 bg-[var(--color-atlantic)] py-2.5 font-mono text-[11px] tracking-wider text-[var(--color-ground)] transition-colors hover:bg-[var(--color-accent-hover)] disabled:opacity-50"
+                  style={{ borderRadius: '2px' }}
                 >
-                  {saving && <Loader2 className="w-4 h-4 animate-spin" />}
-                  Save dashboard
+                  {saving && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+                  SAVE DASHBOARD
                 </button>
               </>
             )}

@@ -26,53 +26,66 @@ export function DashboardFilters({
   const years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i);
 
   const selectClass =
-    'text-xs px-2.5 py-1.5 rounded-lg bg-[var(--color-surface-raised)] border border-[var(--color-border)] text-[var(--color-foreground)] focus:outline-none focus:border-[var(--color-accent)] transition-colors cursor-pointer';
+    'text-xs px-2.5 py-1.5 bg-[var(--color-ground)] border border-[var(--color-graticule)] text-[var(--color-ink)] font-mono tracking-wide focus:outline-none focus:border-[var(--color-atlantic)] transition-colors cursor-pointer';
 
   return (
-    <div className="flex items-center gap-3 flex-wrap p-4 rounded-xl bg-[var(--color-surface-raised)] border border-[var(--color-border)]">
-      <span className="text-xs font-semibold text-[var(--color-foreground-subtle)] uppercase tracking-wider">
-        Filter
+    <div className="survey-frame flex flex-wrap items-center gap-3 bg-[var(--color-surface)] p-4">
+      <span className="font-mono text-[10px] tracking-[0.15em] text-[var(--color-ink-soft)]">
+        FILTER
       </span>
 
       {/* Year range */}
       <div className="flex items-center gap-2">
-        <span className="text-xs text-[var(--color-foreground-muted)]">From</span>
+        <span className="font-mono text-[10px] text-[var(--color-ink-soft)]">From</span>
         <select
           value={filters.startYear}
           onChange={(e) => onFilter({ startYear: Number(e.target.value) })}
           className={selectClass}
+          style={{ borderRadius: '2px' }}
         >
-          {years.filter((y) => y <= filters.endYear).map((y) => (
-            <option key={y} value={y}>{y}</option>
-          ))}
+          {years
+            .filter((y) => y <= filters.endYear)
+            .map((y) => (
+              <option key={y} value={y}>
+                {y}
+              </option>
+            ))}
         </select>
       </div>
 
       <div className="flex items-center gap-2">
-        <span className="text-xs text-[var(--color-foreground-muted)]">To</span>
+        <span className="font-mono text-[10px] text-[var(--color-ink-soft)]">To</span>
         <select
           value={filters.endYear}
           onChange={(e) => onFilter({ endYear: Number(e.target.value) })}
           className={selectClass}
+          style={{ borderRadius: '2px' }}
         >
-          {years.filter((y) => y >= filters.startYear).map((y) => (
-            <option key={y} value={y}>{y}</option>
-          ))}
+          {years
+            .filter((y) => y >= filters.startYear)
+            .map((y) => (
+              <option key={y} value={y}>
+                {y}
+              </option>
+            ))}
         </select>
       </div>
 
       {/* Region toggle */}
       {showRegion && (
-        <div className="flex rounded-lg border border-[var(--color-border)] overflow-hidden">
+        <div
+          className="flex overflow-hidden border border-[var(--color-graticule)]"
+          style={{ borderRadius: '2px' }}
+        >
           {regionLabels.map((label) => (
             <button
               key={label}
               onClick={() => onFilter({ county: label })}
               className={cn(
-                'px-3 py-1.5 text-xs font-medium transition-colors',
+                'px-3 py-1.5 font-mono text-[10px] tracking-wide transition-colors',
                 filters.county === label
-                  ? 'bg-[var(--color-accent)] text-white'
-                  : 'text-[var(--color-foreground-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-foreground)]'
+                  ? 'bg-[var(--color-atlantic)] text-[var(--color-ground)]'
+                  : 'text-[var(--color-ink-soft)] hover:bg-[var(--color-ground-shade)] hover:text-[var(--color-ink)]'
               )}
             >
               {label}
@@ -84,9 +97,9 @@ export function DashboardFilters({
       {/* Reset */}
       <button
         onClick={onReset}
-        className="flex items-center gap-1.5 text-xs text-[var(--color-foreground-subtle)] hover:text-[var(--color-foreground)] transition-colors ml-auto"
+        className="ml-auto flex items-center gap-1.5 text-xs text-[var(--color-foreground-subtle)] transition-colors hover:text-[var(--color-foreground)]"
       >
-        <RotateCcw className="w-3 h-3" />
+        <RotateCcw className="h-3 w-3" />
         Reset
       </button>
     </div>

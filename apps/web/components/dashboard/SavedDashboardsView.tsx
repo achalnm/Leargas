@@ -48,21 +48,27 @@ export function SavedDashboardsView() {
 
   if (!user) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 py-24 text-center">
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-surface-raised)]">
-          <Bookmark className="h-6 w-6 text-[var(--color-foreground-subtle)]" />
+      <div className="flex flex-col items-center justify-center gap-5 py-24 text-center">
+        <div
+          className="flex h-12 w-12 items-center justify-center border border-[var(--color-graticule)] bg-[var(--color-surface)]"
+          style={{ borderRadius: '2px' }}
+        >
+          <Bookmark className="h-5 w-5 text-[var(--color-ink-soft)]" />
         </div>
-        <h3 className="font-display font-600 text-[var(--color-foreground)]">
-          Sign in to save dashboards
-        </h3>
-        <p className="max-w-xs text-sm text-[var(--color-foreground-muted)]">
-          Create a free account to save your filter configurations and pick up where you left off.
-        </p>
+        <div>
+          <h3 className="font-display font-semibold text-[var(--color-ink)]">
+            Sign in to save dashboards
+          </h3>
+          <p className="mt-1 max-w-xs text-sm text-[var(--color-ink-soft)]">
+            Create a free account to save your filter configurations and pick up where you left off.
+          </p>
+        </div>
         <a
           href="/login"
-          className="mt-2 rounded-xl bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
+          className="bg-[var(--color-atlantic)] px-5 py-2.5 font-mono text-[11px] tracking-wider text-[var(--color-ground)] transition-colors hover:bg-[var(--color-accent-hover)]"
+          style={{ borderRadius: '2px' }}
         >
-          Sign in
+          SIGN IN
         </a>
       </div>
     );
@@ -84,15 +90,18 @@ export function SavedDashboardsView() {
       )}
 
       {!loading && !error && dashboards.length === 0 && (
-        <div className="surface flex flex-col items-center gap-4 p-12 text-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-surface-raised)]">
-            <LayoutDashboard className="h-6 w-6 text-[var(--color-foreground-subtle)]" />
+        <div className="survey-frame flex flex-col items-center gap-4 bg-[var(--color-surface)] p-12 text-center">
+          <div
+            className="flex h-12 w-12 items-center justify-center border border-[var(--color-graticule)] bg-[var(--color-ground)]"
+            style={{ borderRadius: '2px' }}
+          >
+            <LayoutDashboard className="h-5 w-5 text-[var(--color-ink-soft)]" />
           </div>
           <div>
-            <h3 className="font-display font-600 mb-1 text-[var(--color-foreground)]">
+            <h3 className="font-display mb-1 font-semibold text-[var(--color-ink)]">
               No saved dashboards yet
             </h3>
-            <p className="text-sm text-[var(--color-foreground-muted)]">
+            <p className="text-sm text-[var(--color-ink-soft)]">
               Go to any dashboard, apply filters, and save your view.
             </p>
           </div>
@@ -107,7 +116,7 @@ export function SavedDashboardsView() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: i * 0.06 }}
-              className="surface group p-5"
+              className="surface card-lift group p-5"
             >
               <div className="mb-3 flex items-start justify-between">
                 <div className="min-w-0 flex-1">
@@ -121,7 +130,8 @@ export function SavedDashboardsView() {
                 <button
                   onClick={() => handleDelete(dashboard.id)}
                   disabled={deletingId === dashboard.id}
-                  className="ml-3 flex-shrink-0 rounded-lg p-1.5 text-[var(--color-foreground-subtle)] opacity-0 transition-colors group-hover:opacity-100 hover:bg-red-950/30 hover:text-[var(--color-error)]"
+                  className="ml-3 flex-shrink-0 p-1.5 text-[var(--color-graticule)] opacity-0 transition-colors group-hover:opacity-100 hover:text-[var(--color-madder)]"
+                  style={{ borderRadius: '2px' }}
                   aria-label="Delete dashboard"
                 >
                   <Trash2 className="h-4 w-4" />
@@ -165,7 +175,10 @@ export function SavedDashboardsView() {
 
 function FilterBadge({ label }: { label: string }) {
   return (
-    <span className="inline-block rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)] px-2 py-0.5 text-[10px] text-[var(--color-foreground-muted)]">
+    <span
+      className="inline-block border border-[var(--color-graticule)] bg-[var(--color-ground)] px-2 py-0.5 font-mono text-[9px] tracking-wide text-[var(--color-ink-soft)]"
+      style={{ borderRadius: '2px' }}
+    >
       {label}
     </span>
   );

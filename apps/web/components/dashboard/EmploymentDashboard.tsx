@@ -124,7 +124,8 @@ export function EmploymentDashboard() {
             onClick={() =>
               downloadCsv(rawData as unknown as Record<string, unknown>[], 'leargas-employment')
             }
-            className="flex flex-shrink-0 items-center gap-2 rounded-lg border border-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-foreground-muted)] transition-colors hover:bg-[var(--color-surface-raised)] hover:text-[var(--color-foreground)]"
+            className="flex flex-shrink-0 items-center gap-2 border border-[var(--color-graticule)] px-4 py-2 font-mono text-[10px] tracking-wider text-[var(--color-ink-soft)] transition-colors hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]"
+            style={{ borderRadius: '2px' }}
           >
             <Download className="h-4 w-4" />
             <span className="hidden sm:inline">Export CSV</span>
@@ -142,7 +143,7 @@ export function EmploymentDashboard() {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {summaryStats.map((s) => (
-          <div key={s.label} className="surface p-4">
+          <div key={s.label} className="surface card-lift p-4">
             <p className="mb-1 text-xs text-[var(--color-foreground-muted)]">{s.label}</p>
             <p className="font-display font-700 text-xl text-[var(--color-foreground)]">
               {s.value}
@@ -156,7 +157,7 @@ export function EmploymentDashboard() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="surface p-6"
+        className="surface card-lift p-6"
       >
         <h3 className="mb-6 text-sm font-semibold text-[var(--color-foreground)]">
           Unemployment rate: Ireland vs EU, {filters.startYear} to {filters.endYear}
@@ -213,7 +214,7 @@ export function EmploymentDashboard() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
-        className="surface p-6"
+        className="surface card-lift p-6"
       >
         <h3 className="mb-6 text-sm font-semibold text-[var(--color-foreground)]">
           Employment by sector (thousands)

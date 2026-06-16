@@ -9,7 +9,7 @@ out/
 dist/
 build/
 
-# Environment variables — NEVER commit these
+# Environment variables - NEVER commit these
 .env
 .env.local
 .env.development.local
@@ -22,7 +22,7 @@ build/
 firebase-adminsdk*.json
 service-account.json
 
-# Data pipeline — generated files, not source
+# Data pipeline - generated files, not source
 packages/data-pipeline/raw/
 packages/data-pipeline/processed/
 

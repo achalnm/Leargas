@@ -40,7 +40,7 @@ Built as a production-quality portfolio project, it demonstrates end-to-end engi
 
 ![Landing hero](Screenshots/landing-hero.png)
 
-The front page. The big Ireland SVG is clickable and links through to the dashboard. Kept it minimal — a headline, a short description, and a clear call to action.
+The front page. The big Ireland SVG is clickable and links through to the dashboard. Kept it minimal: a headline, a short description, and a clear call to action.
 
 ![Feature cards](Screenshots/landing-features.png)
 
@@ -48,7 +48,7 @@ The three sections of the app laid out as cards below the fold. Each one describ
 
 ---
 
-### Dashboard — Overview
+### Dashboard - Overview
 
 ![Overview stats](Screenshots/dashboard-overview.png)
 
@@ -56,7 +56,7 @@ The first thing you see after logging in. Four headline numbers pulled from CSO 
 
 ---
 
-### Dashboard — Housing
+### Dashboard - Housing
 
 ![Housing dashboard](Screenshots/dashboard-housing.png)
 
@@ -64,7 +64,7 @@ The housing sheet. You can filter by year range and switch between national vs D
 
 ---
 
-### Dashboard — Employment
+### Dashboard - Employment
 
 ![Employment dashboard](Screenshots/dashboard-employment.png)
 
@@ -72,7 +72,7 @@ Employment data from the CSO Labour Force Survey. Shows the unemployment rate ov
 
 ---
 
-### Dashboard — Weather
+### Dashboard - Weather
 
 ![Weather dashboard](Screenshots/dashboard-weather.png)
 
@@ -84,7 +84,7 @@ Met Éireann historical climate data for Dublin Airport. You can toggle the main
 
 ![Login page](Screenshots/auth-login.png)
 
-The login page. Email/password or Google. Nothing fancy — just trying to keep it consistent with the rest of the aesthetic rather than slapping in a default auth UI.
+The login page. Email/password or Google. Nothing fancy, just trying to keep it consistent with the rest of the aesthetic rather than slapping in a default auth UI.
 
 ---
 

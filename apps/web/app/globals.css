@@ -16,7 +16,7 @@
   --color-atlantic: #2e6b6e;
   --color-peat: #6b4e2e;
 
-  /* Semantic aliases — keeps existing component refs working */
+  /* Semantic aliases, keeps existing component refs working */
   --color-background: #ece7da;
   --color-surface: #e0d9c7;
   --color-surface-raised: #d8d1bc;
@@ -117,7 +117,7 @@
 }
 
 @layer utilities {
-  /* Survey panel — keylined border with 2px corner ticks via CSS gradients */
+  /* Survey panel, keylined border with 2px corner ticks via CSS gradients */
   .survey-frame {
     position: relative;
     border: 1px solid var(--color-graticule);
@@ -152,7 +152,7 @@
     background-repeat: no-repeat;
   }
 
-  /* Legacy surface aliases — remapped to survey register */
+  /* Legacy surface aliases, remapped to survey register */
   .surface {
     background-color: var(--color-surface);
     border: 1px solid var(--color-graticule);
@@ -165,7 +165,7 @@
     border-radius: 2px;
   }
 
-  /* Sheet eyebrow — IBM Plex Mono label above panels */
+  /* Sheet eyebrow, IBM Plex Mono label above panels */
   .sheet-eyebrow {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -218,7 +218,7 @@
     animation: enter 0.35s ease-out;
   }
 
-  /* Card lift — paper-sheet hover animation */
+  /* Card lift, paper-sheet hover animation */
   .card-lift {
     transition:
       transform 0.18s ease,
@@ -229,7 +229,7 @@
     box-shadow: 0 8px 24px rgba(28, 42, 46, 0.09);
   }
 
-  /* Legacy — no-ops kept so old className refs don't error */
+  /* Legacy, no-ops kept so old className refs don't error */
   .glass {
     background-color: var(--color-surface);
     border: 1px solid var(--color-graticule);

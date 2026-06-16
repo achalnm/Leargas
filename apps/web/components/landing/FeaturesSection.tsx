@@ -31,7 +31,7 @@ const SHEETS = [
     ref: 'FIG. D',
     title: 'Saved Dashboards',
     body: 'Save your filter configurations as named dashboards and pick up exactly where you left off.',
-    figure: '—',
+    figure: '-',
     figureLabel: 'Persistent configs',
     delta: 'Stored in Firestore',
   },

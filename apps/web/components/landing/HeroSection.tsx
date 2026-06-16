@@ -24,7 +24,7 @@ export function HeroSection() {
       />
 
       <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
-        {/* Left — text */}
+        {/* Left - text */}
         <motion.div
           initial={{ opacity: 0, x: -16 }}
           animate={{ opacity: 1, x: 0 }}
@@ -69,7 +69,7 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Right — SVG Ireland map */}
+        {/* Right - SVG Ireland map */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}

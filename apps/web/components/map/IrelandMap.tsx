@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-// County centroids — projected to SVG space (viewBox 0 0 360 430)
+// County centroids, projected to SVG space (viewBox 0 0 360 430)
 // Transform: x = (lon + 10.5) * 68,  y = (55.4 - lat) * 108
 export const COUNTY_POSITIONS: Record<string, { cx: number; cy: number; name: string }> = {
   donegal: { cx: 168, cy: 74, name: 'Donegal' },
@@ -46,7 +46,7 @@ const ISLAND_PATH =
   'L 71,142 L 87,128 L 129,121 L 138,101 L 156,97 ' +
   'L 122,74 L 119,71 L 171,21 L 194,15 Z';
 
-// Northern Ireland — non-interactive neutral overlay
+// Northern Ireland, non-interactive neutral overlay
 const NI_PATH =
   'M 231,32 L 265,22 L 295,19 L 320,55 L 334,106 L 330,126 ' +
   'L 299,148 L 255,143 L 243,130 L 224,122 L 208,114 ' +
@@ -126,7 +126,7 @@ export function IrelandMap({
       {/* Island fill (sea colour distinguishes land) */}
       <path d={ISLAND_PATH} fill="var(--color-ground-shade)" stroke="none" />
 
-      {/* Northern Ireland — neutral, non-interactive */}
+      {/* Northern Ireland, neutral, non-interactive */}
       <path
         d={NI_PATH}
         fill="var(--color-graticule)"
@@ -136,7 +136,7 @@ export function IrelandMap({
         strokeOpacity="0.4"
       />
 
-      {/* Island outline — draws in on landing */}
+      {/* Island outline, draws in on landing */}
       {variant === 'landing' ? (
         <motion.path
           d={ISLAND_PATH}
@@ -303,7 +303,7 @@ export function IrelandMap({
             fill="var(--color-ink-soft)"
             textAnchor="middle"
           >
-            0 — 100km
+            0 - 100km
           </text>
           <text
             x="310"

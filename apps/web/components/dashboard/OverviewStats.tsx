@@ -14,8 +14,8 @@ export function OverviewStats({ numberFormat, eurToInr }: Props) {
   const STATS = [
     {
       label: 'National Median House Price',
-      value: formatWithNumberFormat(340000, numberFormat, eurToInr),
-      change: '+6.2%',
+      value: formatWithNumberFormat(395000, numberFormat, eurToInr),
+      change: '+6.8%',
       changeLabel: 'year-on-year',
       positive: true,
       icon: Home,

@@ -14,10 +14,15 @@ export async function fetchHousingByCounty(): Promise<ApiResponse<CountyHousingD
 
 export function computeHousingStats(data: HousingDataPoint[]): HousingStats {
   if (data.length === 0) {
-    return { nationalMedianPrice: 0, dublinMedianPrice: 0, yoyChangeNational: 0, yoyChangeDublin: 0 };
+    return {
+      nationalMedianPrice: 0,
+      dublinMedianPrice: 0,
+      yoyChangeNational: 0,
+      yoyChangeDublin: 0,
+    };
   }
   const latest = data[data.length - 1];
-  const previousYear = data[data.length - 5] ?? data[0];
+  const previousYear = data[data.length - 4] ?? data[0];
   const yoyNational =
     ((latest.nationalMedianPrice - previousYear.nationalMedianPrice) /
       previousYear.nationalMedianPrice) *

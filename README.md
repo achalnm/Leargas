@@ -34,7 +34,59 @@ Built as a production-quality portfolio project, it demonstrates end-to-end engi
 
 ---
 
-## Tech stack
+## Screenshots
+
+### Landing page
+
+![Landing hero](Screenshots/landing-hero.png)
+
+The front page. The big Ireland SVG is clickable and links through to the dashboard. Kept it minimal — a headline, a short description, and a clear call to action.
+
+![Feature cards](Screenshots/landing-features.png)
+
+The three sections of the app laid out as cards below the fold. Each one describes what data source it draws from and what you can actually do with it.
+
+---
+
+### Dashboard — Overview
+
+![Overview stats](Screenshots/dashboard-overview.png)
+
+The first thing you see after logging in. Four headline numbers pulled from CSO and Met Éireann: median house price, unemployment rate, average temperature, and population. Clicking through on any of them takes you to the full breakdown.
+
+---
+
+### Dashboard — Housing
+
+![Housing dashboard](Screenshots/dashboard-housing.png)
+
+The housing sheet. You can filter by year range and switch between national vs Dublin figures. The top chart shows the price trend as a line, and the bar chart below ranks counties by median price for the latest year. There's a CSV export button in the top right if you want the raw numbers.
+
+---
+
+### Dashboard — Employment
+
+![Employment dashboard](Screenshots/dashboard-employment.png)
+
+Employment data from the CSO Labour Force Survey. Shows the unemployment rate over time and breaks it down by sector. The filter strip lets you narrow the year range the same way as the housing sheet.
+
+---
+
+### Dashboard — Weather
+
+![Weather dashboard](Screenshots/dashboard-weather.png)
+
+Met Éireann historical climate data for Dublin Airport. You can toggle the main temperature chart between area, line, and bar views using the buttons at the top. Rainfall and sunshine hours are shown side by side underneath.
+
+---
+
+### Sign in
+
+![Login page](Screenshots/auth-login.png)
+
+The login page. Email/password or Google. Nothing fancy — just trying to keep it consistent with the rest of the aesthetic rather than slapping in a default auth UI.
+
+---
 
 ```text
 Frontend              Backend / DB            Pipeline

@@ -2,7 +2,7 @@
 
 **Irish public data, made beautiful.**
 
-[![CI](https://github.com/achalnm/leargas/actions/workflows/ci.yml/badge.svg)](https://github.com/achalnm/leargas/actions)
+[![CI](https://github.com/achalnm/Leargas/actions/workflows/ci.yml/badge.svg)](https://github.com/achalnm/Leargas/actions)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
 [![Firebase](https://img.shields.io/badge/Firebase-Firestore-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com/)
@@ -159,7 +159,7 @@ Ireland has excellent open data APIs (CSO, Met Éireann, data.gov.ie) but very f
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/achalnm/leargas.git
+git clone https://github.com/achalnm/Leargas.git
 cd leargas
 npm install
 ```

@@ -164,6 +164,8 @@ npm run dev
 # -> http://localhost:3000
 ```
 
+> Note: the dev script uses `--webpack` to avoid a Turbopack crash caused by the accented character in the project path. If you clone to a plain ASCII path you can remove that flag.
+
 ### 4. (Optional) Run the data pipeline
 
 See [`packages/data-pipeline/README.md`](packages/data-pipeline/README.md) for full instructions.

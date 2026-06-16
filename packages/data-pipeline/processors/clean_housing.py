@@ -140,6 +140,7 @@ def main():
             print(f"  Earliest: {time_series[0]}")
             print(f"  Latest:   {time_series[-1]}")
 
+        # TODO: county breakdown needs region codes mapped - leaving empty for now
         co_path = PROCESSED_DIR / "housing_by_county.json"
         co_path.write_text("[]", encoding="utf-8")
 

@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 import { IrelandMap } from '@/components/map/IrelandMap';
 
 const READINGS = [
-  { county: 'dublin', label: 'Dublin median · ', value: '€428k' },
-  { county: 'mayo', label: 'Mayo rainfall · ', value: '1,400mm' },
-  { county: 'cork', label: 'Unemployed · ', value: '4.4%' },
+  { county: 'dublin', label: 'Dublin median · ', value: '€495k' },
+  { county: 'mayo', label: 'Mayo rainfall · ', value: '1,420mm' },
+  { county: 'cork', label: 'Unemployed · ', value: '4.2%' },
 ];
 
 export function HeroSection() {

@@ -7,9 +7,9 @@ const SHEETS = [
     ref: 'SHEET O',
     title: 'Housing Market',
     body: 'Residential property prices and rental indices by county, from CSO RPPI data going back a decade.',
-    figure: '€352,000',
-    figureLabel: 'National median 2024',
-    delta: '+5.1% YoY',
+    figure: '€395,000',
+    figureLabel: 'National median 2025',
+    delta: '+6.2% YoY',
   },
   {
     ref: 'SHEET M',

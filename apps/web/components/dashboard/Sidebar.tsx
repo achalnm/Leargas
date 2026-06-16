@@ -16,7 +16,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden h-full w-56 flex-shrink-0 flex-col border-r border-[var(--color-graticule)] bg-[var(--color-ground-shade)] md:flex">
+    <aside className="hidden h-full w-52 flex-shrink-0 flex-col border-r border-[var(--color-graticule)] bg-[var(--color-ground-shade)] md:flex lg:w-56">
       {/* Wordmark */}
       <div className="flex h-14 items-center border-b border-[var(--color-graticule)] px-5">
         <Link href="/" className="flex flex-col">

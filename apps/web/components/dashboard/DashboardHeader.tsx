@@ -35,7 +35,7 @@ export function DashboardHeader() {
 
   return (
     <>
-      <header className="flex h-14 flex-shrink-0 items-center justify-between border-b border-[var(--color-graticule)] bg-[var(--color-ground)] px-6">
+      <header className="flex h-14 flex-shrink-0 items-center justify-between border-b border-[var(--color-graticule)] bg-[var(--color-ground)] px-4 md:px-6">
         <div>
           <h1
             className="font-display text-base font-semibold text-[var(--color-ink)]"

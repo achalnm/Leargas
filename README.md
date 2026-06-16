@@ -88,6 +88,26 @@ The login page. Email/password or Google. Nothing fancy, just trying to keep it 
 
 ---
 
+### Backend
+
+![GitHub Actions CI](Screenshots/backend-ci.png)
+
+CI runs on every push via GitHub Actions. Typecheck, lint, and test all run in parallel. The workflow was broken on the first push (missing workspace flags) and fixed a commit later, which is why run #1 failed. Everything has been green since.
+
+![Firebase Authentication](Screenshots/backend-firebase-auth.png)
+
+Firebase Authentication with Email/Password and Google OAuth both enabled. The app uses Next.js middleware to protect dashboard routes, so unauthenticated users get redirected to the login page.
+
+![Vercel Environment Variables](Screenshots/backend-vercel-env.png)
+
+All seven Firebase config keys stored as sensitive environment variables in Vercel, added on May 16 when the project was first deployed. Values are hidden at rest and never committed to the repo.
+
+![Firestore Database](Screenshots/backend-firestore.png)
+
+The Firestore database with all six collections. The housingTimeSeries collection shown here uses year as the document ID, each document holding national and Dublin median prices plus RPPI index values. Data goes back to 2005 and was loaded by the Python pipeline.
+
+---
+
 ```text
 Frontend              Backend / DB            Pipeline
 ------------------    --------------------    ----------------------

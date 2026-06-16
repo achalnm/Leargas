@@ -16,6 +16,7 @@ TABLES = {
     "employment_lfs": ["QLF06", "QLF18", "QLF1"],
 }
 
+# approximate figures from CSO annual reports, not exact - good enough to keep the app running if the live fetch fails
 FALLBACK_HOUSING = {
     "id": ["Statistic", "Year", "Region"],
     "size": [1, 12, 2],
@@ -34,18 +35,18 @@ FALLBACK_HOUSING = {
         }},
     },
     "value": [
-        175000, 280000,
-        189000, 295000,
-        213000, 330000,
+        176000, 281000,
+        190000, 296000,
+        214000, 331000,
         243000, 370000,
         265000, 395000,
-        270000, 395000,
+        271000, 396000,
         265000, 390000,
-        290000, 415000,
-        330000, 440000,
-        355000, 455000,
-        372000, 475000,
-        400000, 500000,
+        291000, 416000,
+        329000, 441000,
+        355000, 456000,
+        373000, 476000,
+        398000, 499000,
     ],
 }
 
@@ -125,7 +126,7 @@ def main():
             save_raw(name, data)
         else:
             fallback = FALLBACK_HOUSING if "housing" in name else FALLBACK_EMPLOYMENT
-            print("  All live fetches failed, using built-in CSO figures")
+            print(f"  live fetch failed for {name}, using fallback data")
             save_raw(name, fallback)
 
     print("\nDone.")

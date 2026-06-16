@@ -138,16 +138,13 @@ Ireland has excellent open data APIs (CSO, Met Éireann, data.gov.ie) but very f
 
 ---
 
-## Technical decisions
+## Notes on the stack
 
-**Why Firestore over PostgreSQL?**
-For a read-heavy, low-write dashboard fed by a batch ETL pipeline, Firestore's zero-ops setup is a better fit than provisioning a relational database. The data shape (flat JSON per data point) maps naturally to Firestore documents.
+**Firestore**: went with this over a relational DB because I didn't want to manage a Postgres instance for a read-heavy dashboard where the pipeline only writes once a week. Free tier covers it and there's nothing to configure.
 
-**Why Next.js App Router?**
-The App Router's server components let us fetch Firestore data server-side on initial load, then hydrate interactivity client-side. It also makes adding API routes and middleware (auth protection) a single-framework concern.
+**Next.js App Router**: server components let you fetch Firestore data before the page hits the browser, which helps with first load. Middleware auth protection was also straightforward.
 
-**Why Recharts over D3.js?**
-Recharts is the pragmatic choice for standard chart types: it's composable, typed, and integrates cleanly with React state. D3 would be the right call for custom geographic or force-directed visualisations, which are on the roadmap.
+**Recharts over D3**: tried D3 initially for the Ireland map, ended up writing the SVG by hand using a simple lon/lat projection to get county centroid positions. For standard line/bar/area charts Recharts is much less painful. D3 is probably the right call if I ever add a choropleth.
 
 ---
 

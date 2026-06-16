@@ -15,9 +15,9 @@
 
 ## What is Léargas?
 
-Léargas (_Irish: insight, vision_) is a full-stack data dashboard that visualises real Irish public data — housing prices, employment trends and climate records sourced directly from CSO and Met Éireann.
+Léargas means "insight" in Irish, which felt like the right name for a project about making public data actually readable. It visualises real data from CSO and Met Éireann covering housing prices, employment trends and climate records. 
 
-Built as a production-quality portfolio project, it demonstrates end-to-end engineering: a Next.js frontend with Firestore-backed data, a Python ETL pipeline that fetches and cleans government data weekly, Firebase Auth, CI/CD via GitHub Actions, and deployment on Vercel.
+Building it meant working across the whole stack, from a Next.js frontend with Firestore on the backend, to a Python ETL pipeline that refreshes the data every Monday, to authentication, automated testing and a production deployment on Vercel.
 
 ---
 

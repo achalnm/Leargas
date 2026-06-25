@@ -37,7 +37,12 @@ jobs:
         working-directory: packages/data-pipeline
         env:
           FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
-        run: echo "$FIREBASE_SERVICE_ACCOUNT_JSON" > service-account.json
+        run: |
+          if [ -n "$FIREBASE_SERVICE_ACCOUNT_JSON" ]; then
+            echo "$FIREBASE_SERVICE_ACCOUNT_JSON" > service-account.json
+          else
+            echo "FIREBASE_SERVICE_ACCOUNT_JSON not set, Firestore push will be skipped"
+          fi
 
       - name: Run pipeline
         working-directory: packages/data-pipeline
